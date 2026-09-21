@@ -50,3 +50,15 @@ Este arquivo registra o histórico cronológico de comandos, decisões arquitetu
   - `AGENTS.md`: Registrado `mcp-engineer` no catálogo de especialistas.
   - `readme.md`: Atualizada a árvore de diretórios.
 - **Status**: Agente pronto para construir servidores MCP e orquestrar agentes declarativos em Markdown.
+
+---
+
+## Sessão: Planejamento da Distribuição Híbrida All-in-One da Agentic Engineering Suite
+
+- **Data**: 2026-09-21
+- **Ação**: Elaboração e expansão do plano arquitetural e de implementação para distribuição unificada de **todos os agentes** da `agentic-engineering-suite` (`spec-maestro`, `mcp-engineer` e catálogo extensível de futuros especialistas).
+- **Metodologia**: Abordagem híbrida ("All-in-One") integrando governança física versionada no Git (`spec-docs/`, `.agent/`, regras de assistente) com ferramentas dinâmicas via servidor MCP modular (`@agentic-suite/mcp-server`) e CLI extensível com catálogo de agentes (`@agentic-suite/cli`).
+- **Artefatos Criados / Atualizados**:
+  - `spec-docs/plans/02_hybrid_distribution_planning.md`: Plano técnico abrangendo arquitetura de Catálogo de Agentes (Agent Registry), suporte a projetos Green-Field e Brown-Field, comandos `init`, `add` e `list`, e decomposição em 4 Bolts.
+  - `implementation_plan.md`: Plano de implementação da suite com caixas de seleção `[ ]` submetido para validação da Loss Function Humana.
+- **Status**: Plano atualizado e pronto para revisão/aprovação do desenvolvedor humano.
