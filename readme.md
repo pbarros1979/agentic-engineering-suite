@@ -36,6 +36,8 @@ O repositório foi desenhado de forma modular para suportar o crescimento progre
 ```text
 agentic-engineering-suite/
 ├── agents/             # Implementações e núcleos de agentes autônomos
+│   ├── spec-maestro/   # Agente de Inception, Planejamento e Especificações SDD/AI-DLC
+│   └── mcp-engineer/   # Agente de Servidores MCP e Agentes em Markdown
 ├── extensions/         # Extensões, conectores (ex: MCP) e plugins
 ├── core/               # Bibliotecas compartilhadas, utilitários e abstrações
 ├── docs/               # Documentação técnica, arquitetura e especificações
