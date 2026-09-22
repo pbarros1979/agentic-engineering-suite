@@ -1,10 +1,10 @@
 # Plano de Arquitetura & Implementação: Distribuição Híbrida ("All-in-One") da Agentic Engineering Suite
 
-**Status**: Ready for Human Approval (Loss Function)  
+**Status**: COMPLETED (All 4 Bolts Executed & Verified)  
 **Intent**: Implementar a abordagem híbrida All-in-One de distribuição extensível para todos os agentes da Agentic Engineering Suite (`spec-maestro`, `mcp-engineer` e futuros especialistas), combinando governança física versionada no Git (`spec-docs/`, `.agent/`, regras de assistente) com MCP Server dinâmico modular para projetos novos (Green-Field) e legados (Brown-Field).  
 **Pathway**: Green-Field (Pacotes de Distribuição da Suite)  
 **Data**: 2026-09-21  
-**Autor**: Spec Maestro (`spec-maestro`)  
+**Autor**: Spec Maestro (`spec-maestro`) & MCP Engineer (`mcp-engineer`)  
 
 ---
 
@@ -51,8 +51,10 @@ agentic-engineering-suite/
 │   │   └── tsconfig.json
 │   │
 │   └── agentic-suite-cli/              # CLI de Scaffolding Híbrido e Extensível
+│       ├── bin/
+│       │   └── agentic-suite.js        # Executável npx / global
 │       ├── src/
-│       │   ├── cli.ts                  # Entrypoint Commander (init, add, list, update)
+│       │   ├── cli.ts                  # Entrypoint Commander (init, add, list, status)
 │       │   ├── catalog.ts              # Catálogo centralizado de agentes disponíveis
 │       │   ├── detect.ts               # Detecção de Git, linguagens e Brown-field
 │       │   ├── scaffold.ts             # Injeção física (.agent/ e spec-docs/)
@@ -161,36 +163,37 @@ npx @agentic-suite/cli add qa-engineer
 ## 5. Workflow de Fatiamento (Units & Bolts)
 
 ### Bolt 1: Servidor MCP Modular da Suite (`agentic-suite-mcp`)
-- [ ] Setup do pacote TypeScript ESM com `@modelcontextprotocol/sdk` e `zod`.
-- [ ] Arquitetura de registro modular de ferramentas (`ToolRegistry`), prompts e resources com namespaces isolados.
-- [ ] **Módulo `spec-maestro` (Namespace `spec_*`)**:
-  - [ ] Tools: `spec_init_workspace`, `spec_create_intent`, `spec_generate_sdd_package`, `spec_audit_convergence`.
-  - [ ] Prompts: `spec/mob-elaboration`, `spec/sdd-package`, `spec/audit-convergence`.
-  - [ ] Resources: templates de `ai-dlc` e `sdd`.
-- [ ] **Módulo `mcp-engineer` (Namespace `mcp_*`)**:
-  - [ ] Tools: `mcp_scaffold_server`, `mcp_validate_schema`, `mcp_audit_security`.
-  - [ ] Prompts: `mcp/design-server`, `mcp/security-audit`.
-  - [ ] Resources: templates de manifesto e sandbox.
-- [ ] Testes unitários com Vitest e testes de conformidade com MCP Inspector.
+- [x] Setup do pacote TypeScript ESM com `@modelcontextprotocol/sdk` e `zod`.
+- [x] Arquitetura de registro modular de ferramentas (`ToolRegistry`), prompts e resources com namespaces isolados.
+- [x] **Módulo `spec-maestro` (Namespace `spec_*`)**:
+  - [x] Tools: `spec_init_workspace`, `spec_create_intent`, `spec_generate_sdd_package`, `spec_audit_convergence`.
+  - [x] Prompts: `spec/mob-elaboration`, `spec/sdd-package`, `spec/audit-convergence`.
+  - [x] Resources: templates de `ai-dlc` e `sdd`.
+- [x] **Módulo `mcp-engineer` (Namespace `mcp_*`)**:
+  - [x] Tools: `mcp_scaffold_server`, `mcp_validate_schema`, `mcp_audit_security`.
+  - [x] Prompts: `mcp/design-server`, `mcp/security-audit`.
+  - [x] Resources: templates de manifesto e sandbox.
+- [x] Testes unitários com Vitest e testes de conformidade com MCP Inspector / InMemoryTransport.
 
 ### Bolt 2: Scaffolding CLI Híbrida e Extensível (`agentic-suite-cli`)
-- [ ] Setup do pacote CLI com `commander`, `prompts` e `picocolors`.
-- [ ] Implementação do `AGENT_REGISTRY` declarativo e plugável.
-- [ ] Comandos principais:
-  - [ ] `init`: wizard interativo com seleção de agentes e assistentes.
-  - [ ] `add <agent-id>`: acoplamento incremental de novo agente em projeto existente.
-  - [ ] `list`: listagem de agentes da suite instalados vs. disponíveis.
-- [ ] Detecção de repositório Git existente e salvaguardas para projetos Brown-Field.
-- [ ] Injetor de regras agregadas (`AGENTS.md`, `.cursor/rules/`, `CLAUDE.md`) com divisão clara de papéis e fronteiras operacionais.
-- [ ] Mecanismo de *Safe JSON Merging* para `.cursor/mcp.json` e `.vscode/settings.json`.
+- [x] Setup do pacote CLI com `commander`, `@inquirer/prompts` e `picocolors`.
+- [x] Implementação do `AGENT_REGISTRY` declarativo e plugável.
+- [x] Comandos principais:
+  - [x] `init`: wizard interativo com seleção de agentes e assistentes.
+  - [x] `add <agent-id>`: acoplamento incremental de novo agente em projeto existente.
+  - [x] `list`: listagem de agentes da suite instalados vs. disponíveis.
+  - [x] `status`: diagnóstico de integridade da suite e governança.
+- [x] Detecção de repositório Git existente e salvaguardas para projetos Brown-Field.
+- [x] Injetor de regras agregadas (`AGENTS.md`, `.cursorrules`, `.cursor/rules/`, `CLAUDE.md`) com divisão clara de papéis e fronteiras operacionais.
+- [x] Mecanismo de *Safe JSON Merging* para `.cursor/mcp.json` e `.vscode/settings.json`.
 
 ### Bolt 3: Testes de Validação, Idempotência e Multi-Agente
-- [ ] Teste E2E Full Suite: inicialização com todos os agentes ativos.
-- [ ] Teste E2E Modular: inicialização com apenas 1 agente selecionado.
-- [ ] Teste E2E Incremental: inicialização com 1 agente e posterior execução de `add` para o segundo agente.
-- [ ] Teste Brown-field em repositório Git com código pré-existente e servidores MCP já configurados.
-- [ ] Teste de Idempotência e integridade das regras em `AGENTS.md`.
+- [x] Teste E2E Full Suite: inicialização com todos os agentes ativos.
+- [x] Teste E2E Modular: inicialização com apenas 1 agente selecionado.
+- [x] Teste E2E Incremental: inicialização com 1 agente e posterior execução de `add` para o segundo agente.
+- [x] Teste Brown-field em repositório Git com código pré-existente e servidores MCP já configurados.
+- [x] Teste de Idempotência e integridade das regras em `AGENTS.md`.
 
 ### Bolt 4: Documentação e Publicação
-- [ ] Documentar o fluxo de distribuição e o catálogo de agentes no `readme.md`.
-- [ ] Atualizar o livro-razão `spec-docs/prompts.md`.
+- [x] Documentar o fluxo de distribuição e o catálogo de agentes no `readme.md`.
+- [x] Atualizar o livro-razão `spec-docs/prompts.md`.

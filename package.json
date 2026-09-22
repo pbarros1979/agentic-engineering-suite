@@ -1,0 +1,20 @@
+{
+  "name": "agentic-engineering-suite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Agentic Engineering Suite - Hybrid Distribution Monorepo",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "tsc --noEmit --project packages/agentic-suite-mcp && tsc --noEmit --project packages/agentic-suite-cli"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.7"
+  }
+}

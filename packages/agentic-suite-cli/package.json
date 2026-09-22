@@ -1,0 +1,57 @@
+{
+  "name": "@agentic-engineering-suite/cli",
+  "version": "1.0.0",
+  "description": "Interactive CLI for scaffolding and managing Agentic Engineering Suite in any repository",
+  "type": "module",
+  "main": "dist/cli.js",
+  "types": "dist/cli.d.ts",
+  "bin": {
+    "agentic-suite": "bin/agentic-suite.js"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbarros1979/agentic-engineering-suite.git",
+    "directory": "packages/agentic-suite-cli"
+  },
+  "homepage": "https://github.com/pbarros1979/agentic-engineering-suite#readme",
+  "bugs": {
+    "url": "https://github.com/pbarros1979/agentic-engineering-suite/issues"
+  },
+  "keywords": [
+    "agentic-engineering-suite",
+    "ai",
+    "agents",
+    "mcp",
+    "model-context-protocol",
+    "cli",
+    "scaffolding",
+    "ai-dlc",
+    "sdd",
+    "governance"
+  ],
+  "author": "pbarros1979",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "watch": "tsc --watch",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.3.2",
+    "commander": "^13.1.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.7"
+  }
+}

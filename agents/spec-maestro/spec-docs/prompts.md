@@ -60,5 +60,36 @@ Este arquivo registra o histórico cronológico de comandos, decisões arquitetu
 - **Metodologia**: Abordagem híbrida ("All-in-One") integrando governança física versionada no Git (`spec-docs/`, `.agent/`, regras de assistente) com ferramentas dinâmicas via servidor MCP modular (`@agentic-suite/mcp-server`) e CLI extensível com catálogo de agentes (`@agentic-suite/cli`).
 - **Artefatos Criados / Atualizados**:
   - `spec-docs/plans/02_hybrid_distribution_planning.md`: Plano técnico abrangendo arquitetura de Catálogo de Agentes (Agent Registry), suporte a projetos Green-Field e Brown-Field, comandos `init`, `add` e `list`, e decomposição em 4 Bolts.
-  - `implementation_plan.md`: Plano de implementação da suite com caixas de seleção `[ ]` submetido para validação da Loss Function Humana.
-- **Status**: Plano atualizado e pronto para revisão/aprovação do desenvolvedor humano.
+- **Status**: Planejamento concluído e aprovado.
+
+---
+
+## Sessão: Implementação da Distribuição Híbrida (02_hybrid_distribution_planning)
+
+- **Data**: 2026-09-22
+- **Ação**: Implementação técnica integral dos 4 Bolts do plano `02_hybrid_distribution_planning.md` conduzida sob a tutela do **MCP Engineer**:
+  1. **Configuração de Monorepo & Workspaces**:
+     - Configurado `package.json` raiz com npm workspaces (`packages/*`).
+     - Atualizado `.gitignore` com exclusões de builds Node (`node_modules`, `dist`, `coverage`, `*.tsbuildinfo`).
+  2. **Bolt 1 - Servidor MCP Modular (`packages/agentic-suite-mcp`)**:
+     - Implementado utilitário `safe-fs.ts` com proteção estrita contra Path Traversal (`resolveSafePath`).
+     - Implementado `ToolRegistry` plugável com namespaces isolados.
+     - Implementado módulo `spec-maestro` com ferramentas `spec_init_workspace`, `spec_create_intent`, `spec_generate_sdd_package`, `spec_audit_convergence`, prompts (`spec/mob-elaboration`, etc.) e resources (`spec://templates/*`).
+     - Implementado módulo `mcp-engineer` com ferramentas `mcp_scaffold_server`, `mcp_validate_schema`, `mcp_audit_security`, prompts (`mcp/design-server`, etc.) e resources (`mcp://templates/*`).
+     - Servidor com isolamento rigoroso de `stdout` (somente JSON-RPC 2.0; logs via `console.error`), validação Zod e respostas estruturadas `isError: true`.
+     - Entrypoint Stdio e factory `createMcpServer`.
+  3. **Bolt 2 - CLI de Scaffolding Híbrida e Extensível (`packages/agentic-suite-cli`)**:
+     - Implementado `AGENT_REGISTRY` declarativo e plugável (`catalog.ts`) com `spec-maestro` e `mcp-engineer`.
+     - Implementado detector de ambiente `detect.ts` para projetos Green-Field e repositórios Git Brown-Field.
+     - Implementado `rules-merger.ts` idempotente e não-destrutivo com âncoras de comentários para `AGENTS.md`, `.cursorrules`, `.cursor/rules/agentic-suite.mdc` e `CLAUDE.md`.
+     - Implementado `mcp-merger.ts` com Safe JSON Merging para `.cursor/mcp.json` e `.vscode/settings.json`.
+     - Implementado módulo de scaffolding `scaffold.ts` injetando manifestos `.agent/agents/`, skills `.agent/skills/`, `.agent/skills.json` e `spec-docs/`.
+     - Comandos implementados com Commander, `@inquirer/prompts` e `picocolors`: `init`, `add <agentId>`, `list`, `status`.
+  4. **Bolt 3 - Testes Automatizados Vitest & E2E**:
+     - 18 testes para `@agentic-suite/mcp-server` (sandbox safe-fs, registro de ferramentas, módulos spec e mcp, e suite E2E com `Client` e `InMemoryTransport`).
+     - 18 testes para `@agentic-suite/cli` (catálogo, detecção de ambiente, rules-merger, safe JSON merger, scaffolding E2E full suite, modular, incremental e Brown-Field).
+     - Total: 36 testes passando com 100% de sucesso.
+  5. **Bolt 4 - Documentação & Livro-Razão**:
+     - Atualizado `readme.md` com arquitetura híbrida, catálogo de agentes, guia de CLI, ferramentas MCP e salvaguardas Brown-Field.
+     - Atualizado `spec-docs/plans/02_hybrid_distribution_planning.md` marcando todos os itens dos 4 Bolts como concluídos.
+- **Status**: Implementação concluída com sucesso. Sistema pronto para distribuição e uso.

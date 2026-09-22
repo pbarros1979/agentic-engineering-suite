@@ -1,0 +1,53 @@
+{
+  "name": "@agentic-engineering-suite/mcp-server",
+  "version": "1.0.0",
+  "description": "Unified modular Model Context Protocol (MCP) server for the Agentic Engineering Suite",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "agentic-suite-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbarros1979/agentic-engineering-suite.git",
+    "directory": "packages/agentic-suite-mcp"
+  },
+  "homepage": "https://github.com/pbarros1979/agentic-engineering-suite#readme",
+  "bugs": {
+    "url": "https://github.com/pbarros1979/agentic-engineering-suite/issues"
+  },
+  "keywords": [
+    "agentic-engineering-suite",
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "ai-agents",
+    "spec-maestro",
+    "mcp-engineer"
+  ],
+  "author": "pbarros1979",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.7"
+  }
+}
