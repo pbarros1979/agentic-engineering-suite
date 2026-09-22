@@ -1,6 +1,6 @@
 {
   "name": "agentic-engineering-suite",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Agentic Engineering Suite - Hybrid Distribution Monorepo",
   "type": "module",
