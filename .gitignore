@@ -39,7 +39,6 @@ out/
 x64/
 x86/
 bld/
-[Bb]in/
 [Oo]bj/
 *.VC.db
 *.opendb
@@ -57,3 +56,7 @@ dist/
 build/
 coverage/
 *.tsbuildinfo
+
+# Ensure package bin executables are tracked
+!packages/**/bin/
+!packages/**/bin/**

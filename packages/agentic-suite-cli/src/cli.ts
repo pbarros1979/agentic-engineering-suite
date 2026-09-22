@@ -11,7 +11,7 @@ const program = new Command();
 program
   .name("agentic-suite")
   .description("CLI oficial para distribuição e governança da Agentic Engineering Suite")
-  .version("1.0.0");
+  .version("1.0.1");
 
 // 1. Comando INIT
 program
@@ -115,7 +115,7 @@ program
       console.log(`${pc.bold("Skills Instaladas:")} ${result.installedSkills.join(", ")}`);
       console.log(`\n${pc.bold("Arquivos Gerados / Atualizados:")}`);
       for (const f of [...result.createdFiles, ...result.updatedFiles]) {
-        console.log(`  ✓ ${f}`);
+        console.log(`  ✔ ${f}`);
       }
 
       console.log(pc.bold(pc.green(`\n🎉 ${result.installedAgents.length} agentes configurados com sucesso!\n`)));
@@ -203,10 +203,10 @@ program
     console.log(`${pc.bold("Skills Instaladas:")} ${env.installedSkills.length > 0 ? env.installedSkills.join(", ") : pc.gray("Nenhuma")}`);
 
     console.log(`\n${pc.bold("Assistentes Detectados:")}`);
-    console.log(`  Cursor: ${env.detectedAssistants.cursor ? pc.green("✓") : pc.gray("✗")}`);
-    console.log(`  Antigravity: ${env.detectedAssistants.antigravity ? pc.green("✓") : pc.gray("✗")}`);
-    console.log(`  Claude Code: ${env.detectedAssistants.claude ? pc.green("✓") : pc.gray("✗")}`);
-    console.log(`  VS Code: ${env.detectedAssistants.vscode ? pc.green("✓") : pc.gray("✗")}\n`);
+    console.log(`  Cursor: ${env.detectedAssistants.cursor ? pc.green("✔") : pc.gray("✗")}`);
+    console.log(`  Antigravity: ${env.detectedAssistants.antigravity ? pc.green("✔") : pc.gray("✗")}`);
+    console.log(`  Claude Code: ${env.detectedAssistants.claude ? pc.green("✔") : pc.gray("✗")}`);
+    console.log(`  VS Code: ${env.detectedAssistants.vscode ? pc.green("✔") : pc.gray("✗")}\n`);
   });
 
 program.parse(process.argv);

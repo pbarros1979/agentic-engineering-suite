@@ -1,6 +1,6 @@
 {
   "name": "@agentic-engineering-suite/cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Interactive CLI for scaffolding and managing Agentic Engineering Suite in any repository",
   "type": "module",
   "main": "dist/cli.js",

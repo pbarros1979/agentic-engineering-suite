@@ -22,7 +22,7 @@ export function createMcpServer(baseDir: string = process.cwd()): {
   const server = new Server(
     {
       name: "@agentic-engineering-suite/mcp-server",
-      version: "1.0.0",
+      version: "1.0.1",
     },
     {
       capabilities: {

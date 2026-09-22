@@ -1,6 +1,6 @@
 {
   "name": "@agentic-engineering-suite/mcp-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Unified modular Model Context Protocol (MCP) server for the Agentic Engineering Suite",
   "type": "module",
   "main": "dist/index.js",
